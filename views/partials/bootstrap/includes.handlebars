@@ -1,0 +1,18 @@
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+{{!-- icons --}}
+<link rel="apple-touch-icon-precomposed" href='{{imgPath "icon.png"}}'/>
+<link rel="shortcut icon" href="{{imgPath "icon.png"}}" type="image/x-icon" />
+<link rel="shortcut icon" href="{{imgPath "favicon.ico"}}">
+
+<link href="{{sitePath "gui/build/index.css"}}" rel="stylesheet" type="text/css" />
+<script async src="{{sitePath "gui/build/index.js"}}" type="text/javascript"></script>
+
+{{!-- open graph tags --}}
+<meta property="og:site_name" content="{{appConfig.siteName}}"/>
+<meta property="og:locale" content="en_US" />
+<meta property="og:image" content="{{imgPath "icon.png"}}"/>
+<meta property="og:type" content="website" />
+
+{{>bootstrap/analytics}}
