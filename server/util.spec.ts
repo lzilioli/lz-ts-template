@@ -1,5 +1,5 @@
 import assert from 'assert';
-import * as util from 'lib/util';
+import * as util from '@server/util';
 
 export async function test(): Promise<void> {
 	describe( 'getHostWithPort', () => {

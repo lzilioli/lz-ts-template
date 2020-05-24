@@ -1,8 +1,8 @@
 import * as util from 'util';
 import Express from 'express';
-import { serve } from 'lib/serve';
-import { SiteConfig, loadAppSettings } from 'lib/settings';
-import { getHostWithPort } from 'lib/util';
+import { serve } from '@server/serve';
+import { SiteConfig, loadAppSettings } from '@server/settings';
+import { getHostWithPort } from '@server/util';
 
 console.log(process.env.NODE_ENV);
 

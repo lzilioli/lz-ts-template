@@ -1,9 +1,10 @@
 import compression from 'compression';
 import Express from 'express';
 import exphbs from 'express-handlebars';
-import { SiteConfig } from 'lib/settings';
+import { SiteConfig } from '@server/settings';
 import * as path from 'path';
-import { handlebarsHelpers } from './handlebars-helpers';
+import { handlebarsHelpers } from '@lib/handlebars-helpers';
+import appPaths from 'app-paths';
 
 export interface BlogModel {
 	siteTitle: string;
@@ -13,8 +14,8 @@ export function serve( config: SiteConfig ): Express.Application {
 
 	const app: Express.Application = Express();
 	app.use( compression() );
-	app.use( '/gui/build', Express.static( path.resolve( path.join( config.publicDirectory, 'build' ) ) ) );
-	app.use( '/gui/im', Express.static( path.resolve( path.join( config.publicDirectory, 'im' ) ) ) );
+	app.use( '/gui/build', Express.static( path.resolve( path.join( appPaths.public, 'build' ) ) ) );
+	app.use( '/gui/im', Express.static( path.resolve( path.join( appPaths.public, 'im' ) ) ) );
 	app.set( 'views', config.viewsDir );
 	const hbs: {
 		engine: (path: string, options: object, callback: (e: unknown, rendered: string) => void) => void;

@@ -2,22 +2,22 @@ const webpack = require( 'webpack' );
 const merge = require('webpack-merge');
 const path = require( 'path' );
 const MiniCssExtractPlugin = require( 'mini-css-extract-plugin' );
+const getWebpackEntryMap = require('./util/getWebpackEntryMap');
+const appPaths = require('../app-paths');
 
 module.exports = merge([
-	require('./webpack.base.js'),
+	require('./util/webpack.base.js'),
 	{
 		target: 'web',
-		entry: {
-			index: path.resolve( 'client/index.ts' )
-		},
+		entry: getWebpackEntryMap('client'),
 		output: {
-			path: path.resolve('dist/public/build'),
+			path: path.resolve(`${appPaths.public}/build`),
 			filename: '[name].js'
 		},
 		resolve: {
 			alias: {
-				client: path.resolve( 'client/' ),
-				sass: path.resolve( 'client/sass/' )
+				'@sass': path.resolve( 'client/sass/' ),
+				"@client": path.resolve("client"),
 			}
 		},
 		module: {

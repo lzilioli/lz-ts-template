@@ -2,7 +2,7 @@
   "name": "lz-ts-template",
   "version": "0.0.0",
   "author": "Luke Zilioli (elzee08@gmail.com)",
-  "main": "dist/index.js",
+  "main": "dist/lib/index.js",
   "private": true,
   "repository": {
     "type": "git",
@@ -12,13 +12,13 @@
     "url": "https://bitbucket.org/lzilioli/lz-ts-template/issues?status=new&status=open"
   },
   "scripts": {
-    "start": "node dist/index.js",
     "build": "gulp build",
     "dev": "NODE_ENV=development gulp dev",
     "lint": "gulp lint",
     "lint-fix": "gulp lint --fix",
-    "dev-serve": "NODE_ENV=development nodemon -w ./package.json -w ./dist/ -e \"md js css json\" dist/index.js",
-    "test": "node_modules/.bin/mocha dist/tests/test-runner.js"
+    "start": "node build/server/index.js",
+    "start-dev": "NODE_ENV=development nodemon -w ./package.json -w ./dist/ -e \"md js css json\" build/server/index.js",
+    "test": "node_modules/.bin/mocha build/tests/index.js"
   },
   "dependencies": {
     "compression": "^1.7.4",

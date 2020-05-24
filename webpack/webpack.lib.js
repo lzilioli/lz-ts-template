@@ -8,14 +8,15 @@ module.exports = merge([
 	{
 		target: 'node',
 		externals: [nodeExternals()],
-		entry: getWebpackEntryMap('tests'),
+		entry: getWebpackEntryMap('lib'),
 		output: {
-			path: path.resolve('build/tests'),
-			filename: '[name].js'
+			path: path.resolve('dist/lib'),
+			filename: '[name].js',
+			library: 'mdMacros',
+			libraryTarget: 'commonjs2'
 		},
 		resolve: {
 			alias: {
-				"@server": path.resolve("server"),
 			}
 		},
 		module: {

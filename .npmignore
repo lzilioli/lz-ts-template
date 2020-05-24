@@ -3,12 +3,12 @@ node_modules/
 npm-debug.log
 *.ignore
 docs/
-config/settings.js
 favicon.iconsproj
-Gulpfile.js
 config/
 lib/
 client/
+server/
+build/
+tests/
 bitbucket-pipelines.yml
 webpack/
-index.js

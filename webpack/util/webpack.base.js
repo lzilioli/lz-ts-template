@@ -5,7 +5,9 @@ module.exports =  {
 	resolve: {
 		extensions: ['.js', '.ts', '.json'],
 		alias: {
-			hbs: path.resolve( 'views/' )
+			"app-paths": path.resolve("app-paths.js"),
+            "@lib": path.resolve("lib"),
+            "@views": path.resolve("views"),
 		}
 	}
 };

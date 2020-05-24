@@ -1,4 +1,4 @@
-import { SiteConfig } from 'lib/settings';
+import { SiteConfig } from '@server/settings';
 
 export function getHostWithPort( config: Pick<SiteConfig, 'port' | 'host' | 'excludePortFromURLs'> ): string {
 	let full: string = config.host;

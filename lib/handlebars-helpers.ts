@@ -1,7 +1,7 @@
-import { getHostWithPort } from 'lib/util';
+import { getHostWithPort } from '@server/util';
 import * as _ from 'lodash';
 import * as path from 'path';
-import { SiteConfig } from 'lib/settings';
+import { SiteConfig } from '@server/settings';
 
 interface SiteHandlebarsHelpers {
 	sitePath: (...args: unknown[]) => string;
