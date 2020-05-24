@@ -7,7 +7,6 @@ module.exports =  {
 		alias: {
 			"app-paths": path.resolve("app-paths.js"),
             "@lib": path.resolve("lib"),
-            "@views": path.resolve("views"),
 		}
 	}
 };

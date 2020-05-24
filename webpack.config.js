@@ -1,8 +1,11 @@
+/* eslint-disable no-undef */
+/* eslint-disable @typescript-eslint/no-var-requires */
+/* eslint-disable @typescript-eslint/typedef */
 const fs = require('fs');
 const path = require('path');
 const _ = require('lodash');
 
-let results = fs.readdirSync(path.join(__dirname, 'webpack'));
+const results = fs.readdirSync(path.join(__dirname, 'webpack'));
 module.exports = _.chain(results)
 .filter(file => file.endsWith('.js'))
 .map((file)=>{

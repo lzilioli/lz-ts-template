@@ -18,6 +18,7 @@ module.exports = merge([
 			alias: {
 				'@sass': path.resolve( 'client/sass/' ),
 				"@client": path.resolve("client"),
+				"@views": path.resolve("views"),
 			}
 		},
 		module: {
