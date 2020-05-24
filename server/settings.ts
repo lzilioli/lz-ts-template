@@ -10,7 +10,6 @@ export interface SiteConfig {
 	protocol: string;
 	siteName: string;
 	siteVersion: string;
-	viewsDir: string;
 }
 
 const defaultSettings: SiteConfig = {
@@ -23,7 +22,6 @@ const defaultSettings: SiteConfig = {
 	protocol: 'http',
 	siteName: 'Example App',
 	siteVersion: require( '../package.json' ).version,
-	viewsDir: 'dist/views',
 };
 
 const ConfigOverridesByEnv: {

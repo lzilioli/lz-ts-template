@@ -6,14 +6,15 @@ const eslint = require('gulp-eslint');
 const todo = require('gulp-todo');
 const webpack = require('webpack-stream');
 const webpackConfig = require('./webpack.config.js');
+const appPaths = require('./app-paths');
 
 gulp.task('clean', gulp.parallel([
 	() => {
-		return gulp.src('./dist', {allowEmpty: true})
+		return gulp.src(`./${appPaths.distFolder}`, {allowEmpty: true})
 			.pipe(clean())
 	},
 	() => {
-		return gulp.src('./build', {allowEmpty: true})
+		return gulp.src(`./${appPaths.buildFolder}`, {allowEmpty: true})
 			.pipe(clean())
 	},
 ]));
@@ -39,21 +40,15 @@ function fetchWebpackTasks(watch) {
 gulp.task('webpack', gulp.parallel(fetchWebpackTasks(false)));
 gulp.task('webpack-watch', gulp.parallel(fetchWebpackTasks(true)));
 
-gulp.task('copy', gulp.parallel([
-	()=>{
-		return gulp.src('./public/**/*', {base: './public/'})
-		.pipe(gulp.dest('./dist/public/'))
-	},
-	()=>{
-		return gulp.src('./views/**/*', {base: './views/'})
-		.pipe(gulp.dest('./dist/views'))
+gulp.task('copy', ()=>{
+		return gulp.src(`./${appPaths.publicFolder}/**/*`, {base: `./${appPaths.publicFolder}/`})
+		.pipe(gulp.dest(`./${appPaths.publicDistFolder}`))
 	}
-]));
+);
 
 gulp.task('copy-watch', () => {
 	return gulp.watch([
-		'public/**/*',
-		'views/**/*'
+		`${appPaths.publicFolder}/**/*`
 	], gulp.parallel('copy'));
 });
 
@@ -84,7 +79,8 @@ gulp.task('lint', () => {
 			// '**/*.js',
 			'**/*.ts',
 			'!node_modules/**',
-			'!dist/**',
+			`!${appPaths.buildFolder}/**`,
+			`!${appPaths.distFolder}/**`,
 		])
 		// eslint() attaches the lint output to the 'eslint' property
 		// of the file object so it can be used by other modules.
@@ -103,7 +99,8 @@ gulp.task('todo', () => {
 		'**/*.js',
 		'**/*.ts',
 		'!node_modules/**',
-		'!dist/**',
+		`!${appPaths.buildFolder}/**`,
+		`!${appPaths.distFolder}/**`,
 	])
 	.pipe(todo())
 	.pipe(gulp.dest('./'));

@@ -9,16 +9,16 @@ module.exports = merge([
 	require('./util/webpack.base.js'),
 	{
 		target: 'web',
-		entry: getWebpackEntryMap('client'),
+		entry: getWebpackEntryMap(appPaths.clientFolder),
 		output: {
-			path: path.resolve(`${appPaths.public}/build`),
+			path: path.resolve(path.join(appPaths.publicDistFolder, appPaths.buildFolder)),
 			filename: '[name].js'
 		},
 		resolve: {
 			alias: {
-				'@sass': path.resolve( 'client/sass/' ),
-				"@client": path.resolve("client"),
-				"@views": path.resolve("views"),
+				'@sass': path.resolve( appPaths.sassFolder ),
+				"@client": path.resolve(appPaths.clientFolder),
+				"@views": path.resolve(appPaths.viewsFolder),
 			}
 		},
 		module: {

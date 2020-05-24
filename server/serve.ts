@@ -14,15 +14,14 @@ export function serve( config: SiteConfig ): Express.Application {
 
 	const app: Express.Application = Express();
 	app.use( compression() );
-	app.use( '/gui/build', Express.static( path.resolve( path.join( appPaths.public, 'build' ) ) ) );
-	app.use( '/gui/im', Express.static( path.resolve( path.join( appPaths.public, 'im' ) ) ) );
-	app.set( 'views', config.viewsDir );
+	app.use( '/gui/', Express.static( path.resolve( path.join( appPaths.publicDistFolder ) ) ) );
+	app.set( 'views', appPaths.viewsFolder );
 	const hbs: {
 		engine: (path: string, options: object, callback: (e: unknown, rendered: string) => void) => void;
 		render: (template: string, model?: unknown) => Promise<string>;
 	} = exphbs.create( {
-		layoutsDir: path.join( config.viewsDir, 'layouts' ),
-		partialsDir: path.join(config.viewsDir,'partials'),
+		layoutsDir: path.join( appPaths.viewsFolder, appPaths.viewsLayoutsFolder ),
+		partialsDir: path.join(appPaths.viewsFolder, appPaths.viewsPartialsFolder),
 		compilerOptions: {
 			preventIndent: true
 		},

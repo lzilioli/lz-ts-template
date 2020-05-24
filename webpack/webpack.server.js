@@ -2,20 +2,21 @@ const merge = require('webpack-merge');
 const path = require( 'path' );
 const nodeExternals = require('webpack-node-externals');
 const getWebpackEntryMap = require('./util/getWebpackEntryMap');
+const appPaths = require('../app-paths');
 
 module.exports = merge([
 	require('./util/webpack.base.js'),
 	{
 		target: 'node',
 		externals: [nodeExternals()],
-		entry: getWebpackEntryMap('server'),
+		entry: getWebpackEntryMap(appPaths.serverFolder),
 		output: {
-			path: path.resolve('build/server'),
+			path: path.resolve(path.join(appPaths.buildFolder, appPaths.serverFolder)),
 			filename: '[name].js'
 		},
 		resolve: {
 			alias: {
-				"@server": path.resolve("server"),
+				"@server": path.resolve(appPaths.serverFolder),
 			}
 		},
 		module: {
