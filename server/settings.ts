@@ -27,7 +27,7 @@ const defaultSettings: SiteConfig = {
 };
 
 const ConfigOverridesByEnv: {
-	[key: string]: Partial<SiteConfig>
+	[key: string]: Partial<SiteConfig>;
 } = {
 	production: {
 		excludePortFromURLs: true,
@@ -41,6 +41,10 @@ export function loadAppSettings(): SiteConfig {
 	let envSettings: Partial<SiteConfig> = {};
 	if ( process.env.CONFIG_ENV ) {
 		envSettings = ConfigOverridesByEnv[process.env.CONFIG_ENV];
+		if (_.isUndefined(envSettings)) {
+			console.error(`No settings found for config environment ${process.env.CONFIG_ENV}`);
+			process.exit(1);
+		}
 	}
 	const envOverrides: Partial<SiteConfig> = {};
 	_.each(_.keys(defaultSettings), (key: string) => {
