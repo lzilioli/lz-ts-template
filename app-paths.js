@@ -1,15 +1,19 @@
 /* eslint-disable no-undef */
 module.exports = {
-    publicDistFolder: 'dist/public',
-    // | build/
-    libFolder: 'lib',
-    serverFolder: 'server',
-    publicFolder: 'public',
-    clientFolder: 'client',
-    sassFolder: 'client/sass',
-    testsFolder: 'tests',
+    binaryFolder: 'bin',
     buildFolder: 'build',
+    // | server
+    clientFolder: 'client',
     distFolder: 'dist',
+    libFolder: 'lib',
+    publicDistFolder: 'dist/public',
+    // | lib/
+    // | client/
+    // | bin/
+    publicFolder: 'public',
+    sassFolder: 'client/sass',
+    serverFolder: 'server',
+    testsFolder: 'tests',
     viewsFolder: 'views',
     viewsLayoutsFolder: 'layouts',
     viewsPartialsFolder: 'partials',

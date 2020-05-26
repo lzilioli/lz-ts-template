@@ -5,16 +5,7 @@ A template to quickly get up and running with a TypeScript project.
 
 ![Node.js CI](https://github.com/lzilioli/lz-ts-template/workflows/Node.js%20CI/badge.svg?branch=master)
 
-# Table Of Contents
-
-    -   [App Settings](#app-settings)
-
-        -   [Defining settings](#defining-settings)
-
-            -   [environment variables](#environment-variables)
-            -   [`ConfigOverridesByEnv` + the `CONFIG_ENV` environment variable](#configoverridesbyenv--the-config_env-environment-variable)
-
-    -   [Overview](#overview)
+[[mdToc]]
 
 ## App Settings
 
