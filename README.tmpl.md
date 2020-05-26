@@ -7,6 +7,10 @@ A template to quickly get up and running with a TypeScript project.
 
 [[mdToc]]
 
+# Overview
+
+Template repository. Uses nodejs + typescript. Also express and a quick front-end app build.
+
 ## App Settings
 
 App settings are defined in settings.ts. Here, you will find the `SiteConfig` interface, which
