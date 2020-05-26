@@ -13,7 +13,7 @@ module.exports = merge([
 		output: {
 			path: path.resolve(path.join(appPaths.distFolder, appPaths.libFolder)),
 			filename: '[name].js',
-			library: 'mdMacros',
+			library: 'lzTsTemplate',
 			libraryTarget: 'commonjs2'
 		},
 		resolve: {
