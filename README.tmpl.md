@@ -11,6 +11,18 @@ A template to quickly get up and running with a TypeScript project.
 
 Template repository. Uses nodejs + typescript. Also express and a quick front-end app build.
 
+## Getting Started
+
+```
+npm install -g gulp-cli
+git clone git@github.com:lzilioli/lz-ts-template.git && cd $_
+npm install
+gulp install-githooks
+npm run dev
+# in another tab
+npm run dev-serve
+```
+
 ## App Settings
 
 App settings are defined in settings.ts. Here, you will find the `SiteConfig` interface, which
