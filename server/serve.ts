@@ -1,5 +1,5 @@
 import compression from 'compression';
-import Express from 'express';
+import Express, {Request, Response, Application} from 'express';
 import exphbs from 'express-handlebars';
 import { SiteConfig } from '@server/settings';
 import * as path from 'path';
@@ -16,10 +16,7 @@ export function serve( config: SiteConfig ): Express.Application {
 	app.use( compression() );
 	app.use( '/gui/', Express.static( path.resolve( path.join( appPaths.publicDistFolder ) ) ) );
 	app.set( 'views', appPaths.viewsFolder );
-	const hbs: {
-		engine: (path: string, options: object, callback: (e: unknown, rendered: string) => void) => void;
-		render: (template: string, model?: unknown) => Promise<string>;
-	} = exphbs.create( {
+	const hbs: Exphbs = exphbs.create( {
 		layoutsDir: path.join( appPaths.viewsFolder, appPaths.viewsLayoutsFolder ),
 		partialsDir: path.join(appPaths.viewsFolder, appPaths.viewsPartialsFolder),
 		compilerOptions: {
@@ -29,7 +26,7 @@ export function serve( config: SiteConfig ): Express.Application {
 		helpers: handlebarsHelpers(config)
 	} );
 
-	function render404( res: exphbs.Response ): void {
+	function render404( res: Response ): void {
 		res.status( 404 ).render( '404', {
 			siteTitle: 'Page Not Found',
 		} as BlogModel );
@@ -39,29 +36,29 @@ export function serve( config: SiteConfig ): Express.Application {
 	app.set( 'view engine', 'handlebars' );
 
 	if( process.env.NODE_ENV !== 'production' ) {
-		app.use( '*', ( req: exphbs.Request, res: exphbs.Response, next: () => void ): void => {
+		app.use( '*', ( req: Request, res: Response, next: () => void ): void => {
 			if( req.query.jsonmode ) {
 				res.render = ( _page: string, model: unknown ): string => {
-					return res.json( model );
+					return res.json( model ) as unknown as string;
 				};
 			}
 			next();
 		} );
 	}
 
-	app.get( '/', function( _req: exphbs.Request, res: exphbs.Response ) {
+	app.get( '/', function( _req: Request, res: Response ) {
 		res.render( 'index', {
 			siteTitle: 'Hello World',
 		} as BlogModel );
 	} );
 
-	app.get( '/contact', ( _req: exphbs.Request, res: exphbs.Response ) => {
+	app.get( '/contact', ( _req: Request, res: Response ) => {
 		res.render( 'contact', {
 			siteTitle: 'Contact',
 		} as BlogModel );
 	} );
 
-	app.get( '*', ( _req: exphbs.Request, res: exphbs.Response ) => {
+	app.get( '*', ( _req: Request, res: Response ) => {
 		render404( res );
 	} );
 
