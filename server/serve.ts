@@ -10,9 +10,9 @@ export interface BlogModel {
 	siteTitle: string;
 }
 
-export function serve( config: SiteConfig ): Express.Application {
+export function serve( config: SiteConfig ): Application {
 
-	const app: Express.Application = Express();
+	const app: Application = Express();
 	app.use( compression() );
 	app.use( '/gui/', Express.static( path.resolve( path.join( appPaths.publicDistFolder ) ) ) );
 	app.set( 'views', appPaths.viewsFolder );

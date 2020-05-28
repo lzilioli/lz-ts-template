@@ -76,7 +76,7 @@ gulp.task('lint', () => {
 	const hasFixFlag = process.argv.slice(2).includes('--fix');
 
 	return gulp.src([
-			// '**/*.js',
+			'**/*.js',
 			'**/*.ts',
 			'!node_modules/**',
 			`!${appPaths.buildFolder}/**`,
