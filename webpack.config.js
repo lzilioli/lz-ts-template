@@ -4,14 +4,15 @@
 const fs = require('fs');
 const path = require('path');
 const _ = require('lodash');
+const appPaths = require(path.resolve('app-paths'));
 
-const results = fs.readdirSync(path.join(__dirname, 'webpack'));
+const results = fs.readdirSync(path.join(__dirname, appPaths.codeFolder, appPaths.webpackConfigsFolder));
 module.exports = _.chain(results)
 .filter(file => file.endsWith('.js'))
 .map((file)=>{
 	return {
 		file,
-		config: require(`./webpack/${file}`)
+		config: require(`./${appPaths.codeFolder}/${appPaths.webpackConfigsFolder}/${file}`)
 	};
 })
 .filter(obj => {

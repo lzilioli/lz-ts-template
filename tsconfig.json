@@ -13,23 +13,22 @@
         "moduleResolution": "node",
         "baseUrl": "./",
         "paths": {
-            "@client/*": ["client/*"],
-            "@lib/*": ["lib/*"],
-            "@server/*": ["server/*"],
-            "@views/*": ["views/*"]
-        }
+            "@client/*": ["code/client/*"],
+            "@lib/*": ["code/lib/*"],
+            "@server/*": ["code/server/*"],
+            "@views/*": ["code/views/*"]
+        },
+        "typeRoots": [
+            "@types",
+            "node_modules/@types"
+        ]
     },
     "types": [
         "node",
         "webpack-env"
     ],
     "include": [
-    	"./bin/**/*",
-    	"./client/**/*",
-    	"./server/**/*",
-    	"./views/**/*",
-        "./lib/**/*",
-        "./tests/**/*", "app-paths.js",
+    	"code/**/*.ts"
     ],
     "exclude": [
     	"node_modules"

@@ -1,22 +1,29 @@
+/* eslint-disable no-undef */
+/* eslint-disable @typescript-eslint/no-var-requires */
+/* eslint-disable @typescript-eslint/typedef */
+const webpack = require('webpack');
 const merge = require('webpack-merge');
 const path = require( 'path' );
 const nodeExternals = require('webpack-node-externals');
 const getWebpackEntryMap = require('./util/getWebpackEntryMap');
-const appPaths = require('../app-paths')
+const appPaths = require(path.resolve('app-paths'))
+/* eslint-enable no-undef */
 
+// eslint-disable-next-line no-undef
 module.exports = merge([
+	// eslint-disable-next-line no-undef
 	require('./util/webpack.base.js'),
 	{
 		target: 'node',
 		externals: [nodeExternals()],
-		entry: getWebpackEntryMap(appPaths.testsFolder),
+		entry: getWebpackEntryMap(path.join(appPaths.codeFolder, appPaths.testsFolder)),
 		output: {
 			path: path.resolve(path.join(appPaths.buildFolder, appPaths.testsFolder)),
 			filename: '[name].js'
 		},
 		resolve: {
 			alias: {
-				"@server": path.resolve(appPaths.serverFolder),
+				"@server": path.resolve(path.join(appPaths.codeFolder, appPaths.serverFolder)),
 			}
 		},
 		module: {
@@ -27,6 +34,11 @@ module.exports = merge([
 					exclude: /node_modules/
 				}
 			]
-		},
+		}, 
+		plugins: [
+			new webpack.DefinePlugin({
+				IS_BROWSER: false,
+			}),
+		]
 	}
 ]);

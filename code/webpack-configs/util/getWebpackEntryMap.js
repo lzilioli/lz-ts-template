@@ -1,8 +1,16 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
+/* eslint-disable @typescript-eslint/typedef */
+/* eslint-disable no-undef */
 const fs = require('fs');
 const path = require('path');
 const _ = require('lodash');
+/* eslint-enable no-undef */
 
+/* eslint-disable no-undef */
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
 module.exports = function getWebpackEntryMap(forFolder) {
+    /* eslint-enable no-undef */
+    /* eslint-enable @typescript-eslint/explicit-function-return-type */
     const resolvedFolder = path.resolve(forFolder);
     let results;
     try {

@@ -15,10 +15,10 @@ export function serve( config: SiteConfig ): Application {
 	const app: Application = Express();
 	app.use( compression() );
 	app.use( '/gui/', Express.static( path.resolve( path.join( appPaths.publicDistFolder ) ) ) );
-	app.set( 'views', appPaths.viewsFolder );
+	app.set( 'views', path.join( appPaths.codeFolder, appPaths.viewsFolder ) );
 	const hbs: Exphbs = exphbs.create( {
-		layoutsDir: path.join( appPaths.viewsFolder, appPaths.viewsLayoutsFolder ),
-		partialsDir: path.join(appPaths.viewsFolder, appPaths.viewsPartialsFolder),
+		layoutsDir: path.join( appPaths.codeFolder, appPaths.viewsFolder, appPaths.viewsLayoutsFolder ),
+		partialsDir: path.join( appPaths.codeFolder, appPaths.viewsFolder, appPaths.viewsPartialsFolder ),
 		compilerOptions: {
 			preventIndent: true
 		},

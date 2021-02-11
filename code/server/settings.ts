@@ -21,7 +21,7 @@ const defaultSettings: SiteConfig = {
 	port: 3000,
 	protocol: 'http',
 	siteName: 'Example App',
-	siteVersion: require( '../package.json' ).version,
+	siteVersion: require( '../../package.json' ).version,
 };
 
 const ConfigOverridesByEnv: {

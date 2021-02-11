@@ -2,7 +2,7 @@
   "name": "lz-ts-template",
   "version": "0.0.0",
   "author": "Luke Zilioli (elzee08@gmail.com)",
-  "main": "dist/lib/index.js",
+  "main": "$npm_package_config_appPaths_buildFolder/lib/index.js",
   "private": true,
   "repository": {
     "type": "git",
@@ -16,16 +16,18 @@
     "dev": "NODE_ENV=development gulp dev",
     "lint-fix": "gulp lint --fix",
     "lint": "gulp lint",
-    "start-dev": "NODE_ENV=development nodemon -w ./package.json -w ./dist/ -e \"md js css json\" build/server/index.js",
-    "start": "node build/server/index.js",
-    "test": "node_modules/.bin/mocha build/tests/index.js",
+    "start-dev": "DEBUG=lz-ts-template* NODE_ENV=development nodemon -w ./package.json -w ./build -e \"md js css json\" $npm_package_config_appPaths_buildFolder/server/index.js",
+    "start": "node $npm_package_config_appPaths_buildFolder/server/index.js",
+    "test": "node_modules/.bin/mocha $npm_package_config_appPaths_buildFolder/tests/index.js",
     "update-readme": "mdmacros README.tmpl.md README.md"
   },
   "bin": {
-    "lztstemplate": "dist/bin/index.js"
+    "lztstemplate": "$npm_package_config_appPaths_distFolder/bin/index.js"
   },
   "dependencies": {
     "compression": "^1.7.4",
+    "config": "^3.3.3",
+    "debug": "^4.3.1",
     "express": "^4.17.1",
     "express-handlebars": "^4.0.4",
     "lodash": "^4.17.15"
@@ -62,5 +64,24 @@
     "webpack-merge": "^4.2.2",
     "webpack-node-externals": "^1.7.2",
     "webpack-stream": "^5.2.1"
+  },
+  "config": {
+    "appPaths": {
+      "buildFolder": "build",
+      "distFolder": "build/dist",
+      "publicDistFolder": "build/dist/assets",
+      "codeFolder": "code",
+      "binaryFolder": "bin",
+      "clientFolder": "client",
+      "libFolder": "lib",
+      "sassFolder": "client/sass",
+      "serverFolder": "server",
+      "testsFolder": "tests",
+      "publicFolder": "assets",
+      "webpackConfigsFolder": "webpack-configs",
+      "viewsFolder": "views",
+      "viewsLayoutsFolder": "layouts",
+      "viewsPartialsFolder": "partials"
+    }
   }
 }
