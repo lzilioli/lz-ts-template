@@ -6,11 +6,7 @@ import * as path from 'path';
 import { handlebarsHelpers } from '@lib/handlebars-helpers';
 import appPaths from 'app-paths';
 
-export interface BlogModel {
-	siteTitle: string;
-}
-
-export function serve( config: SiteConfig ): Application {
+export function getExpressApp( config: SiteConfig ): Application {
 
 	const app: Application = Express();
 	app.use( compression() );
@@ -26,12 +22,6 @@ export function serve( config: SiteConfig ): Application {
 		helpers: handlebarsHelpers(config)
 	} );
 
-	function render404( res: Response ): void {
-		res.status( 404 ).render( '404', {
-			siteTitle: 'Page Not Found',
-		} as BlogModel );
-	}
-
 	app.engine( 'handlebars', hbs.engine );
 	app.set( 'view engine', 'handlebars' );
 
@@ -45,22 +35,6 @@ export function serve( config: SiteConfig ): Application {
 			next();
 		} );
 	}
-
-	app.get( '/', function( _req: Request, res: Response ) {
-		res.render( 'index', {
-			siteTitle: 'Hello World',
-		} as BlogModel );
-	} );
-
-	app.get( '/contact', ( _req: Request, res: Response ) => {
-		res.render( 'contact', {
-			siteTitle: 'Contact',
-		} as BlogModel );
-	} );
-
-	app.get( '*', ( _req: Request, res: Response ) => {
-		render404( res );
-	} );
 
 	return app;
 }

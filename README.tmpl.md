@@ -65,7 +65,6 @@ const ConfigOverridesByEnv: {
 	[key: string]: Partial<SiteConfig>;
 } = {
 	production: {
-		excludePortFromURLs: true,
 		host: 'www.example.com',
 		protocol: 'https',
 		port: 5050,

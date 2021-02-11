@@ -1,8 +1,9 @@
-import * as _ from 'lodash';
+import _ from 'lodash';
+import config from 'config';
+import { debug } from '@lib/debug';
 
 export interface SiteConfig {
 	analyticsEnabled: boolean;
-	excludePortFromURLs: boolean;
 	gaId: string;
 	host: string;
 
@@ -14,13 +15,11 @@ export interface SiteConfig {
 
 const defaultSettings: SiteConfig = {
 	analyticsEnabled: false,
-	excludePortFromURLs: false,
-	gaId: '',
-	host: 'localhost',
-
+	gaId: config.has('gaId') ? config.get('gaId') : '',
+	host: config.has('host') ? config.get('host') : 'localhost',
 	port: 3000,
 	protocol: 'http',
-	siteName: 'Example App',
+	siteName: require('../../package.json').name,
 	siteVersion: require( '../../package.json' ).version,
 };
 
@@ -28,7 +27,6 @@ const ConfigOverridesByEnv: {
 	[key: string]: Partial<SiteConfig>;
 } = {
 	production: {
-		excludePortFromURLs: true,
 		host: 'www.example.com',
 		protocol: 'https',
 		port: 5050,
@@ -53,7 +51,7 @@ export function loadAppSettings(): SiteConfig {
 	});
 	const finalConfig: SiteConfig = _.defaultsDeep({}, envOverrides, envSettings, defaultSettings);
 	if (process.env.NODE_ENV === 'development') {
-		console.log('app loaded with config: ', finalConfig);
+		debug('app loaded with config: ', finalConfig);
 	}
 	return finalConfig;
 }

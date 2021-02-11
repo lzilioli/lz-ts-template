@@ -20,12 +20,20 @@ export const handlebarsHelpers: (config: SiteConfig) => SiteHandlebarsHelpers = 
 		fullSitePath: ( ...args: string[] ): string => {
 			const input: string[] = _.slice( args, 0, args.length - 1 );
 			const joinedInput: string = _.join( input, '/' );
-			return `${config.protocol}://${path.join( `${getHostWithPort( config )}`, joinedInput )}`;
+			return `${getHostWithPort( {
+				port: config.port,
+				hostname: config.host,
+				protocol: config.protocol,
+			} )}/${path.join( joinedInput )}`;
 		},
 		imgPath: ( ...args: string[] ): string => {
 			const input: string[] = _.slice( args, 0, args.length - 1 );
 			const joinedInput: string = _.join( input, '/' );
-			return `${config.protocol}://${path.join( `${getHostWithPort( config )}`, 'gui/im/', joinedInput )}`;
+			return `${getHostWithPort( {
+				port: config.port,
+				hostname: config.host,
+				protocol: config.protocol,
+			} )}/${path.join( 'gui/im/', joinedInput )}`;
 		},
 		toJson: ( data: unknown ): string => {
 			return JSON.stringify( data, null, 2 );

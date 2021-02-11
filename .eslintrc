@@ -11,7 +11,8 @@
     "./my-eslint-rules"
   ],
   "ignorePatterns": [
-    "webpack/**",
+    "code/webpack-configs/**",
+    "dist/**",
     "Gulpfile.js"
   ]
 }

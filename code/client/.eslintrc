@@ -8,6 +8,6 @@
     "eslint:recommended",
     "plugin:@typescript-eslint/eslint-recommended",
     "plugin:@typescript-eslint/recommended",
-    "../my-eslint-rules"
+    "../../my-eslint-rules"
   ]
 }

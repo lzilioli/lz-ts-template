@@ -1,9 +1,16 @@
-import { SiteConfig } from '@server/settings';
 
-export function getHostWithPort( config: Pick<SiteConfig, 'port' | 'host' | 'excludePortFromURLs'> ): string {
-	let full: string = config.host;
-	if( ( `${config.port}` ) !== '8080' && !config.excludePortFromURLs ) {
-		full += `:${config.port}`;
+export interface OptionsForGetHostWithPort {
+	protocol: string;
+	port: number;
+	hostname: string;
+}
+
+export function getHostWithPort(
+	opts: OptionsForGetHostWithPort
+): string {
+	let requestURLPrefix: string = `${opts.protocol}://${opts.hostname}`;
+	if (!isNaN(opts.port) && opts.port !== 80 && opts.port !== 8080) {
+		requestURLPrefix = `${requestURLPrefix}:${opts.port}`
 	}
-	return full;
+	return requestURLPrefix;
 }
