@@ -10,17 +10,7 @@ export async function test(): Promise<void> {
 					hostname: 'example.com',
 					port: 1000,
 				}),
-				'example.com:1000'
-			);
-		});
-        it('honors the excludePortFromURLs flag', () => {
-            assert.equal(
-				util.getHostWithPort({
-					protocol: 'https',
-					hostname: 'example.com',
-					port: 1000,
-				}),
-				'example.com'
+				'https://example.com:1000'
 			);
 		});
         it('ignores port if it is 80, or 8080, regardless of excludePortFromURLs flag', () => {
@@ -30,7 +20,7 @@ export async function test(): Promise<void> {
 					hostname: 'example.com',
 					port: 80,
 				}),
-				'example.com'
+				'https://example.com'
 			);
             assert.equal(
 				util.getHostWithPort({
@@ -38,7 +28,7 @@ export async function test(): Promise<void> {
 					hostname: 'example.com',
 					port: 8080,
 				}),
-				'example.com'
+				'https://example.com'
 			);
 		});
 	});
