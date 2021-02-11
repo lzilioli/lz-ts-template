@@ -1,5 +1,6 @@
 const _ = require('lodash');
 const gulp = require('gulp');
+const path = require('path');
 const gulpIf = require('gulp-if');
 const clean = require('gulp-rimraf');
 const eslint = require('gulp-eslint');
@@ -41,14 +42,14 @@ gulp.task('webpack', gulp.parallel(fetchWebpackTasks(false)));
 gulp.task('webpack-watch', gulp.parallel(fetchWebpackTasks(true)));
 
 gulp.task('copy', ()=>{
-		return gulp.src(`./${appPaths.publicFolder}/**/*`, {base: `./${appPaths.publicFolder}/`})
+		return gulp.src(`./${path.join(appPaths.codeFolder, appPaths.publicFolder)}/**/*`, {base: `./${path.join(appPaths.codeFolder, appPaths.publicFolder)}/`})
 		.pipe(gulp.dest(`./${appPaths.publicDistFolder}`))
 	}
 );
 
 gulp.task('copy-watch', () => {
 	return gulp.watch([
-		`${appPaths.publicFolder}/**/*`
+		`${path.join(appPaths.codeFolder, appPaths.publicFolder)}/**/*`
 	], gulp.parallel('copy'));
 });
 
