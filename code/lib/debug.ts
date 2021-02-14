@@ -1,4 +1,10 @@
 import Debug from 'debug';
 
-export const debug: Debug.Debugger = Debug(require('../../package.json').name);
-export const vDebug: Debug.Debugger = Debug(`${require('../../package.json').name}:verbose`);
+const packageName: string = require('../../package.json').name;
+
+export const debug: Debug.Debugger = Debug(packageName);
+export const vDebug: Debug.Debugger = Debug(`${packageName}:verbose`);
+
+export function getDebug(namespace: string): Debug.Debugger {
+    return Debug(`${packageName}:${namespace}`);
+}
