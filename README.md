@@ -5,8 +5,11 @@ A template to quickly get up and running with a TypeScript project.
 
 ![Node.js CI](https://github.com/lzilioli/lz-ts-template/workflows/Node.js%20CI/badge.svg?branch=master)
 
-
 # Table Of Contents
+
+-   [Overview](#overview)
+
+    -   [Getting Started](#getting-started)
 
     -   [App Settings](#app-settings)
 
@@ -15,7 +18,25 @@ A template to quickly get up and running with a TypeScript project.
             -   [environment variables](#environment-variables)
             -   [`ConfigOverridesByEnv` + the `CONFIG_ENV` environment variable](#configoverridesbyenv--the-config_env-environment-variable)
 
-    -   [Overview](#overview)
+    -   [Docker Build](#docker-build)
+
+    -   [Overview](#overview-1)
+
+# Overview
+
+Template repository. Uses nodejs + typescript. Also express and a quick front-end app build. Now featuring simple Docker support as well.
+
+## Getting Started
+
+```
+npm install -g gulp-cli
+git clone git@github.com:lzilioli/lz-ts-template.git && cd $_
+npm install
+gulp install-githooks
+npm run dev
+# in another tab
+npm run dev-serve
+```
 
 ## App Settings
 
@@ -74,6 +95,18 @@ To load and use app settings in your app:s
 ```ts
 import { SiteConfig, loadAppSettings } from '@server/settings';
 const siteConfig: SiteConfig = loadAppSettings();
+```
+
+## Docker Build
+
+```bash
+docker build -t lz-ts-template --build-arg GITHUB_NPM_AUTH_TOKEN=<github npm token> .
+# watch static assets
+npm run docker-watch
+# serve
+npm run docker-start-dev 
+# –or– 
+npm run docker-start
 ```
 
 ## Overview

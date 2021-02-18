@@ -9,7 +9,7 @@ A template to quickly get up and running with a TypeScript project.
 
 # Overview
 
-Template repository. Uses nodejs + typescript. Also express and a quick front-end app build. Not featuring simple Docker support as well.
+Template repository. Uses nodejs + typescript. Also express and a quick front-end app build. Now featuring simple Docker support as well.
 
 ## Getting Started
 
