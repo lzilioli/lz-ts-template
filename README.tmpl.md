@@ -9,7 +9,7 @@ A template to quickly get up and running with a TypeScript project.
 
 # Overview
 
-Template repository. Uses nodejs + typescript. Also express and a quick front-end app build.
+Template repository. Uses nodejs + typescript. Also express and a quick front-end app build. Not featuring simple Docker support as well.
 
 ## Getting Started
 
@@ -80,6 +80,18 @@ To load and use app settings in your app:s
 ```ts
 import { SiteConfig, loadAppSettings } from '@server/settings';
 const siteConfig: SiteConfig = loadAppSettings();
+```
+
+## Docker Build
+
+```bash
+docker build -t lz-ts-template --build-arg GITHUB_NPM_AUTH_TOKEN=<github npm token> .
+# watch static assets
+npm run docker-watch
+# serve
+npm run docker-start-dev 
+# –or– 
+npm run docker-start
 ```
 
 ## Overview

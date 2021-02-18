@@ -12,6 +12,9 @@
     "url": "https://bitbucket.org/lzilioli/lz-ts-template/issues?status=new&status=open"
   },
   "scripts": {
+    "docker": "docker run ${DOCKER_FLAGS} -v ~/Projects/lz-ts-template/:/usr/src/app lz-ts-template",
+    "docker-start-dev": "DOCKER_FLAGS=\"-d -p 11000:3000\" npm run docker -- npm run start-dev",
+    "docker-watch": "npm run docker -- npm run dev",
     "build": "gulp build",
     "dev": "NODE_ENV=development gulp dev",
     "lint-fix": "gulp lint --fix",
