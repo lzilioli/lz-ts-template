@@ -5,11 +5,15 @@ import { SiteConfig } from '@server/settings';
 import * as path from 'path';
 import { handlebarsHelpers } from '@lib/handlebars-helpers';
 import appPaths from 'app-paths';
+import methodOverride from 'method-override';
 
 export function getExpressApp( config: SiteConfig ): Application {
 
 	const app: Application = Express();
 	app.use( compression() );
+	// Allow html forms to DELETE and PUT, but as a POST
+	app.use(methodOverride('_method'));
+
 	app.use( '/gui/', Express.static( path.resolve( path.join( appPaths.publicDistFolder ) ) ) );
 	app.set( 'views', path.join( appPaths.codeFolder, appPaths.viewsFolder ) );
 	const hbs: Exphbs = exphbs.create( {
