@@ -7,3 +7,6 @@ build/
 
 # local configs
 config/*local*
+.claude/*local*
+.claude/*.lock
+.claude/worktrees
