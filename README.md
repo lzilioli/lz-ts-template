@@ -1,4 +1,10 @@
 
+# 📦 Archived — lz-ts-template
+
+> **Note:** This template is archived as of 2026-05-06. I no longer use it as my starting point for TypeScript projects — the gulp/webpack toolchain it ships with is dated, and I now bootstrap new TS projects with simpler tooling (tsup/tsx, no gulp). The repo is preserved here as a snapshot of how I worked in the late-2010s/early-2020s. If you want a TS starter today, look elsewhere.
+
+---
+
 # lz-ts-template
 
 A template to quickly get up and running with a TypeScript project.
